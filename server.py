@@ -9,7 +9,7 @@ CORS(app)
 
 
 @app.route('/')
-async def respond_as_cyril():
+async def respond_as_agent():
     prompt = request.args.get('prompt')
     username = request.args.get('username')
     group_users = request.args.getlist('group_users')
@@ -18,7 +18,7 @@ async def respond_as_cyril():
     filtered_group_users = [await apply_filter(user) for user in group_users]
 
     filtered_prompt = await apply_filter(prompt)
-    filtered_prompt = '\n' + f'{filtered_username} said, "{filtered_prompt}" cyril replied, "'
+    filtered_prompt = '\n' + f'{filtered_username} said, "{filtered_prompt}" agent replied, "'
 
     response = await create_response(filtered_prompt, filtered_username, filtered_group_users)
     
